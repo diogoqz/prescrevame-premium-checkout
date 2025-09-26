@@ -15,10 +15,10 @@ require_once __DIR__ . '/config.php';
 // ========================================
 // CONFIGURAÇÕES DO PRODUTO
 // ========================================
-define('PRODUCT_NAME', 'PrescrevaMe Premium - Assinatura Anual');
+if (!defined('PRODUCT_NAME')) define('PRODUCT_NAME', 'PrescrevaMe Premium - Assinatura Anual');
 define('PRODUCT_DESCRIPTION_TITLE', 'Acesso completo ao PrescrevaMe via WhatsApp');
 define('PRODUCT_DESCRIPTION_SUBTITLE', 'IA médica avançada para diagnóstico e prescrição');
-define('PRODUCT_PRICE', 34700); // R$ 347,00 em centavos
+if (!defined('PRODUCT_PRICE')) define('PRODUCT_PRICE', 34700); // R$ 347,00 em centavos
 define('PRODUCT_PRICE_DISPLAY', 'R$ 347,00');
 define('PRODUCT_ORIGINAL_PRICE', 42700); // Preço de tabela para exibir economia
 define('PRODUCT_ORIGINAL_PRICE_DISPLAY', 'R$ 427,00');
@@ -106,7 +106,7 @@ define('SITE_URL', 'http://localhost:8000');
 // ========================================
 // CONFIGURAÇÕES DE PAGAMENTO
 // ========================================
-define('PAYMENT_CHECK_INTERVAL', 5); // Verificar status a cada 5 segundos
+if (!defined('PAYMENT_CHECK_INTERVAL')) define('PAYMENT_CHECK_INTERVAL', 5); // Verificar status a cada 5 segundos
 define('PAYMENT_REDIRECT_DELAY', 2000); // Delay para redirecionamento (ms)
 
 // ========================================
@@ -140,7 +140,7 @@ define('EMAIL_SMTP_PASS', '');
 // ========================================
 // CONFIGURAÇÕES DE DEBUG
 // ========================================
-define('DEBUG_MODE', false); // true para ativar logs detalhados
+if (!defined('DEBUG_MODE')) define('DEBUG_MODE', false); // true para ativar logs detalhados
 define('LOG_WEBHOOKS', true); // true para logar webhooks
 
 // ========================================

@@ -1,7 +1,7 @@
 <?php
-session_start();
-
 require_once '../settings.php';
+
+session_start();
 
 // Garantir que nenhum referrer seja enviado para domínios externos
 header('Referrer-Policy: no-referrer');

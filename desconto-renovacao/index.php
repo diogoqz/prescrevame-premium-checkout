@@ -1,8 +1,10 @@
 <?php
-session_start();
-
 // Carregar configurações
 require_once '../settings.php';
+
+// Iniciar sessão após as configurações
+session_start();
+
 header('Referrer-Policy: no-referrer');
 
 // Função para fazer requisições à API

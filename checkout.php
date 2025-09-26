@@ -1,8 +1,10 @@
 <?php
-session_start();
-
 // Carregar configurações
 require_once 'settings.php';
+
+// Iniciar sessão após as configurações
+session_start();
+
 // Não enviar referrer para domínios externos
 header('Referrer-Policy: no-referrer');
 

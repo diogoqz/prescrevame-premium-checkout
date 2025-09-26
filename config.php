@@ -113,10 +113,12 @@ function debug($message, $data = null) {
 // Configurações de timezone
 date_default_timezone_set('America/Sao_Paulo');
 
-// Configurações de sessão
-ini_set('session.cookie_httponly', 1);
-ini_set('session.use_strict_mode', 1);
-ini_set('session.cookie_secure', isset($_SERVER['HTTPS']));
+// Configurações de sessão (apenas se a sessão não foi iniciada)
+if (session_status() === PHP_SESSION_NONE) {
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.use_strict_mode', 1);
+    ini_set('session.cookie_secure', isset($_SERVER['HTTPS']));
+}
 
 // Headers de segurança
 if (!headers_sent()) {
