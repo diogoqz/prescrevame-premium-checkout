@@ -165,13 +165,13 @@ body {
 }
 
 .summary-title {
-    font-size: 18px;
+    font-size: clamp(14px, 4.8vw, 18px);
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 0px;
-    white-space: nowrap; /* não quebrar linha */
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap; /* manter em uma linha */
+    width: 100%;
+    display: block;
 }
 
 .summary-subtitle {
@@ -210,6 +210,13 @@ body {
     color: #e53935; /* vermelho chamativo */
     font-weight: 800;
     font-size: 20px;
+}
+
+@media (max-width: 420px) {
+  .product-summary { gap: 10px; }
+  .summary-thumb { width: 60px; height: 60px; }
+  .summary-title { font-size: clamp(13px, 5.2vw, 16px); }
+  .summary-price .summary-discount { font-size: 18px; }
 }
 
 .form-group {
