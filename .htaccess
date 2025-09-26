@@ -1,0 +1,12 @@
+DirectoryIndex index.php checkout.php obrigado/index.php desconto-pix/index.php desconto-renovacao/index.php
+
+RewriteEngine On
+
+# Trailing slash normalize
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^obrigado$ /obrigado/ [R=301,L]
+
+# Prevent directory listing (defense in depth in case Apache conf changes)
+Options -Indexes
+

@@ -8,6 +8,7 @@ RUN a2enmod rewrite
 
 # Copiar app
 COPY . /var/www/html/
+COPY .htaccess /var/www/html/.htaccess
 
 # Config Apache para servir pastas como rotas limpas
 RUN printf "<Directory /var/www/html>\n    AllowOverride All\n    Require all granted\n</Directory>\n" > /etc/apache2/conf-available/app.conf  && a2enconf app
