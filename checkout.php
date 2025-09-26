@@ -365,7 +365,7 @@ if (isset($_SESSION['pix_data']['status']) && $_SESSION['pix_data']['status'] ==
                         <span id="btn-text">Gerar PIX para Pagamento</span>
                         <div id="loading-spinner" class="loading-spinner hidden"></div>
                     </button>
-                    <div class="saving-hint">Ao pagar com PIX você economiza <?php echo $economia; ?>.</div>
+                    <div class="saving-hint">A liberação do acesso ocorre de forma automática.</div>
                 </form>
                 
                 <!-- Badges de Segurança -->
