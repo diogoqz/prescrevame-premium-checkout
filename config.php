@@ -3,41 +3,89 @@
  * Configurações do sistema PrescrevaMe Premium
  */
 
+// Função para carregar variáveis de ambiente do arquivo .env
+function loadEnv($path) {
+    if (!file_exists($path)) {
+        return false;
+    }
+    
+    $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) {
+            continue;
+        }
+        
+        list($name, $value) = explode('=', $line, 2);
+        $name = trim($name);
+        $value = trim($value);
+        
+        if (!array_key_exists($name, $_SERVER) && !array_key_exists($name, $_ENV)) {
+            putenv(sprintf('%s=%s', $name, $value));
+            $_ENV[$name] = $value;
+            $_SERVER[$name] = $value;
+        }
+    }
+    return true;
+}
+
+// Carregar arquivo .env
+loadEnv(__DIR__ . '/.env');
+
+// Função auxiliar para obter variáveis de ambiente com valor padrão
+function env($key, $default = null) {
+    $value = getenv($key);
+    if ($value === false) {
+        return $default;
+    }
+    
+    // Converter strings booleanas
+    if (in_array(strtolower($value), ['true', 'false'])) {
+        return strtolower($value) === 'true';
+    }
+    
+    // Converter números
+    if (is_numeric($value)) {
+        return strpos($value, '.') !== false ? (float) $value : (int) $value;
+    }
+    
+    return $value;
+}
+
 // Configurações da API AbacatePay
-define('ABACATE_API_KEY', 'abc_dev_xp4Fa35xjKCq1tndyRzEEj3w');
-define('ABACATE_API_BASE_URL', 'https://api.abacatepay.com/v1');
+define('ABACATE_API_KEY', env('ABACATE_API_KEY', ''));
+define('ABACATE_API_BASE_URL', env('ABACATE_API_BASE_URL', 'https://api.abacatepay.com/v1'));
 
 // Configurações do produto
-define('PRODUCT_NAME', 'PrescrevaMe Premium');
-define('PRODUCT_DESCRIPTION', 'Assinatura Anual Premium');
-define('PRODUCT_PRICE', 34700); // Em centavos (R$ 347,00)
-define('PRODUCT_PRICE_FORMATTED', 'R$ 347,00');
+define('PRODUCT_NAME', env('PRODUCT_NAME', 'PrescrevaMe Premium'));
+define('PRODUCT_DESCRIPTION', env('PRODUCT_DESCRIPTION', 'Assinatura Anual Premium'));
+define('PRODUCT_PRICE', env('PRODUCT_PRICE', 34700)); // Em centavos (R$ 347,00)
+define('PRODUCT_PRICE_FORMATTED', env('PRODUCT_PRICE_FORMATTED', 'R$ 347,00'));
 
 // Configurações de tempo
-define('PIX_EXPIRATION_MINUTES', 15); // Tempo de expiração do PIX em minutos
-define('PAYMENT_CHECK_INTERVAL', 2); // Intervalo para verificar pagamento em segundos
+define('PIX_EXPIRATION_MINUTES', env('PIX_EXPIRATION_MINUTES', 15)); // Tempo de expiração do PIX em minutos
+define('PAYMENT_CHECK_INTERVAL', env('PAYMENT_CHECK_INTERVAL', 2)); // Intervalo para verificar pagamento em segundos
 
 // URLs
-define('SUCCESS_REDIRECT_URL', '/obrigado');
-define('LOGO_URL', 'https://i.ibb.co/7JbHrmdT/pm3.jpg');
+define('SUCCESS_REDIRECT_URL', env('SUCCESS_REDIRECT_URL', '/obrigado'));
+define('LOGO_URL', env('LOGO_URL', 'https://i.ibb.co/7JbHrmdT/pm3.jpg'));
 
 // Configurações de email (se necessário no futuro)
-define('SMTP_HOST', '');
-define('SMTP_PORT', 587);
-define('SMTP_USERNAME', '');
-define('SMTP_PASSWORD', '');
-define('FROM_EMAIL', 'noreply@prescreva.me');
-define('FROM_NAME', 'PrescrevaMe Premium');
+define('SMTP_HOST', env('SMTP_HOST', ''));
+define('SMTP_PORT', env('SMTP_PORT', 587));
+define('SMTP_USERNAME', env('SMTP_USERNAME', ''));
+define('SMTP_PASSWORD', env('SMTP_PASSWORD', ''));
+define('FROM_EMAIL', env('FROM_EMAIL', 'noreply@prescreva.me'));
+define('FROM_NAME', env('FROM_NAME', 'PrescrevaMe Premium'));
 
 // Configurações de banco de dados (se necessário no futuro)
-define('DB_HOST', 'localhost');
-define('DB_NAME', '');
-define('DB_USER', '');
-define('DB_PASS', '');
+define('DB_HOST', env('DB_HOST', 'localhost'));
+define('DB_NAME', env('DB_NAME', ''));
+define('DB_USER', env('DB_USER', ''));
+define('DB_PASS', env('DB_PASS', ''));
 
 // Configurações de debug
-define('DEBUG_MODE', false); // Altere para false em produção
-define('LOG_ERRORS', true);
+define('DEBUG_MODE', env('DEBUG_MODE', false)); // Altere para false em produção
+define('LOG_ERRORS', env('LOG_ERRORS', true));
 
 // Função para log de erros
 function logError($message, $context = []) {

@@ -7,6 +7,11 @@ Script não-interativo para testar a funcionalidade PIX
 import abacatepay
 from abacatepay.customers import CustomerMetadata
 from abacatepay.pixQrCode import PixQrCodeIn
+import os
+from dotenv import load_dotenv
+
+# Carregar variáveis de ambiente
+load_dotenv()
 
 def test_pix_creation():
     """Testa criação de PIX"""
@@ -14,7 +19,12 @@ def test_pix_creation():
     print("=" * 40)
     
     # Inicializar cliente
-    client = abacatepay.AbacatePay("abc_dev_xp4Fa35xjKCq1tndyRzEEj3w")
+    api_key = os.getenv('ABACATE_API_KEY', '')
+    if not api_key:
+        print("❌ Erro: ABACATE_API_KEY não encontrada no arquivo .env")
+        return
+    
+    client = abacatepay.AbacatePay(api_key)
     
     # Dados do cliente
     customer = CustomerMetadata(

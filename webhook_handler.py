@@ -8,14 +8,19 @@ import json
 import logging
 import hashlib
 import hmac
+import os
 from datetime import datetime
 from typing import Dict, Any, Optional
 from flask import Flask, request, jsonify
 import abacatepay
+from dotenv import load_dotenv
+
+# Carregar variáveis de ambiente
+load_dotenv()
 
 # Configurações
-API_KEY = "abc_dev_xp4Fa35xjKCq1tndyRzEEj3w"
-WEBHOOK_SECRET = "seu_webhook_secret_aqui"  # Configure no painel AbacatePay
+API_KEY = os.getenv('ABACATE_API_KEY', '')
+WEBHOOK_SECRET = os.getenv('WEBHOOK_SECRET', 'seu_webhook_secret_aqui')  # Configure no painel AbacatePay
 LOG_FILE = "webhook.log"
 
 # Configurar logging

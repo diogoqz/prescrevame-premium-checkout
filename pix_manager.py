@@ -9,14 +9,19 @@ from abacatepay.customers import CustomerMetadata
 from abacatepay.pixQrCode import PixQrCodeIn
 import json
 import time
+import os
 from datetime import datetime
 from typing import Optional, Dict, Any
+from dotenv import load_dotenv
+
+# Carregar variáveis de ambiente
+load_dotenv()
 
 # Configurações
-API_KEY = "abc_dev_xp4Fa35xjKCq1tndyRzEEj3w"  # Chave de desenvolvimento
-PRODUCT_PRICE = 34700  # R$ 347,00 em centavos
-PRODUCT_NAME = "PrescrevaMe Premium - Assinatura Anual"
-PIX_EXPIRATION = 900  # 15 minutos
+API_KEY = os.getenv('ABACATE_API_KEY', '')  # Chave de desenvolvimento
+PRODUCT_PRICE = int(os.getenv('PRODUCT_PRICE', 34700))  # R$ 347,00 em centavos
+PRODUCT_NAME = os.getenv('PRODUCT_NAME', 'PrescrevaMe Premium - Assinatura Anual')
+PIX_EXPIRATION = int(os.getenv('PIX_EXPIRATION_MINUTES', 15)) * 60  # Converter minutos para segundos
 
 class PrescrevaMePixManager:
     """Gerenciador de pagamentos PIX para PrescrevaMe Premium"""

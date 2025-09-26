@@ -6,13 +6,18 @@ Gera relatórios detalhados de pagamentos e transações
 
 import json
 import csv
+import os
 from datetime import datetime, timedelta
 from typing import List, Dict, Any, Optional
 import abacatepay
 from collections import defaultdict
+from dotenv import load_dotenv
+
+# Carregar variáveis de ambiente
+load_dotenv()
 
 # Configurações
-API_KEY = "abc_dev_xp4Fa35xjKCq1tndyRzEEj3w"
+API_KEY = os.getenv('ABACATE_API_KEY', '')
 
 class TransactionReporter:
     """Gerador de relatórios de transações"""

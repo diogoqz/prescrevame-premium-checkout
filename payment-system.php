@@ -1,3 +1,7 @@
+<?php
+// Incluir configurações de ambiente
+require_once __DIR__ . '/config.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -606,8 +610,8 @@
                     },
                     errors: {},
                     // Configuração da API
-                    apiKey: 'abc_dev_xp4Fa35xjKCq1tndyRzEEj3w', // Chave de desenvolvimento AbacatePay
-                    apiBaseUrl: 'https://api.abacatepay.com/v1'
+                    apiKey: '<?php echo ABACATE_API_KEY; ?>', // Chave de desenvolvimento AbacatePay
+                    apiBaseUrl: '<?php echo ABACATE_API_BASE_URL; ?>'
                 }
             },
             methods: {

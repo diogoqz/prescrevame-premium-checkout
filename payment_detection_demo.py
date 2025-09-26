@@ -6,9 +6,14 @@ Mostra como o sistema detecta quando um PIX foi pago
 
 import abacatepay
 import time
+import os
 from datetime import datetime
 from abacatepay.customers import CustomerMetadata
 from abacatepay.pixQrCode import PixQrCodeIn
+from dotenv import load_dotenv
+
+# Carregar variáveis de ambiente
+load_dotenv()
 
 def demonstrate_payment_detection():
     """Demonstra como o sistema detecta pagamentos"""
@@ -16,7 +21,12 @@ def demonstrate_payment_detection():
     print("=" * 70)
     
     # Inicializar cliente
-    client = abacatepay.AbacatePay("abc_dev_xp4Fa35xjKCq1tndyRzEEj3w")
+    api_key = os.getenv('ABACATE_API_KEY', '')
+    if not api_key:
+        print("❌ Erro: ABACATE_API_KEY não encontrada no arquivo .env")
+        return
+    
+    client = abacatepay.AbacatePay(api_key)
     
     # Criar PIX
     print("1️⃣ Criando PIX...")

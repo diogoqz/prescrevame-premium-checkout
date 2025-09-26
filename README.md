@@ -54,8 +54,9 @@ Sistema completo de checkout integrado com a API AbacatePay para processamento d
    ```
 
 3. **Configure a API Key do AbacatePay**
-   - Edite o arquivo `config.php`
-   - Substitua `abc_dev_xp4Fa35xjKCq1tndyRzEEj3w` pela sua chave de produção
+   - Copie o arquivo `.env.example` para `.env`
+   - Edite o arquivo `.env` e configure sua chave de API
+   - Substitua `your_api_key_here` pela sua chave de produção
 
 4. **Para geração de PDF (opcional)**
    - Baixe a biblioteca TCPDF: https://tcpdf.org/

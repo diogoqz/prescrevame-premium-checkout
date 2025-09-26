@@ -81,7 +81,7 @@ def create_env_file():
 # Copie este arquivo para .env e configure suas credenciais
 
 # API AbacatePay
-ABACATE_API_KEY=abc_dev_xp4Fa35xjKCq1tndyRzEEj3w
+ABACATE_API_KEY=your_api_key_here
 ABACATE_WEBHOOK_SECRET=seu_webhook_secret_aqui
 
 # Configurações do Produto

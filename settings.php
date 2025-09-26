@@ -4,11 +4,13 @@
  * Centralize todas as configurações aqui
  */
 
+// Incluir configurações de ambiente
+require_once __DIR__ . '/config.php';
+
 // ========================================
 // CONFIGURAÇÕES DA API ABACATEPAY
 // ========================================
-define('ABACATE_API_KEY', 'abc_dev_xp4Fa35xjKCq1tndyRzEEj3w');
-define('ABACATE_API_BASE_URL', 'https://api.abacatepay.com/v1');
+// As configurações da API já estão definidas no config.php
 
 // ========================================
 // CONFIGURAÇÕES DO PRODUTO
