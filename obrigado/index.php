@@ -59,8 +59,8 @@ Qualquer dúvida, estamos a um clique de distância. Conte com a gente!
             </div>
 
             <div class="actions">
-                <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=558487964063&text=/" rel="noreferrer" target="_blank">ACESSAR CONTEÚDO</a>
-                <a class="btn btn-secondary" href="https://api.whatsapp.com/send?phone=558487964063&text=Ol%C3%A1!%20Preciso%20de%SUPORTE%20com%20meu%20acesso%20Premium" rel="noreferrer" target="_blank">FALAR COM SUPORTE</a>
+                <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=18567398993&text=/" rel="noreferrer" target="_blank">ACESSAR CONTEÚDO</a>
+                <a class="btn btn-secondary" href="https://api.whatsapp.com/send?phone=5563992437559&text=Ol%C3%A1!%20Preciso%20de%SUPORTE%20com%20meu%20acesso%20Premium" rel="noreferrer" target="_blank">FALAR COM SUPORTE</a>
             </div>
         </div>
     </div>
