@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprovante de Transferência - AbacatePay</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #9EEA6C;
+            --dark-green: #204749;
+            --light-green: #C7E950;
+            --bg-dark: #1a1a1a;
+            --text-light: #f5f5f5;
+            --text-gray: #a0a0a0;
+            --border-gray: #333333;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .receipt-container {
+            max-width: 416px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .receipt-header {
+            background: var(--primary-green);
+            padding: 20px;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .receipt-header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='416' height='16' viewBox='0 0 416 16' fill='none'%3E%3Cpath d='M408.621 10.0312L416 0.132812V16H0V0L7.10254 10.0312L14.166 0L20.7949 10.0312L27.3867 0L34.4893 10.0312L41.5527 0L48.1816 10.0312L54.7734 0L61.876 10.0312L68.9395 0L75.5684 10.0312L82.1602 0L89.2627 10.0312L96.3262 0L102.955 10.0312L109.547 0L116.649 10.0312L123.713 0L130.342 10.0312L136.935 0L144.037 10.0312L151.1 0L158.621 10.0312L166.1 0L173.621 10.0312L181.1 0L188.621 10.0312L196.1 0L203.621 10.0312L211.1 0L218.119 10.0312L225.1 0L232.119 10.0312L239.1 0L246.119 10.0312L253.1 0L260.621 10.0312L268.1 0L275.119 10.0312L282.1 0L289.119 10.0312L296.1 0L303.621 10.0312L311.1 0L318.621 10.0312L326.1 0L333.621 10.0312L341.1 0L348.621 10.0312L356.1 0L363.621 10.0312L371.1 0L378.621 10.0312L386.1 0L393.621 10.0312L401.1 0L408.621 10.0312Z' fill='%239EEA6C'/%3E%3C/svg%3E") no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .receipt-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='416' height='16' viewBox='0 0 416 16' fill='none'%3E%3Cpath d='M408.621 6.61724L416 16.5156V0.648438H0V16.6484L7.10254 6.61724L14.166 16.6484L20.7949 6.61724L27.3867 16.6484L34.4893 6.61724L41.5527 16.6484L48.1816 6.61724L54.7734 16.6484L61.876 6.61724L68.9395 16.6484L75.5684 6.61724L82.1602 16.6484L89.2627 6.61724L96.3262 16.6484L102.955 6.61724L109.547 16.6484L116.649 6.61724L123.713 16.6484L130.342 6.61724L136.935 16.6484L144.037 6.61724L151.1 16.6484L158.621 6.61724L166.1 16.6484L173.621 6.61724L181.1 16.6484L188.621 6.61724L196.1 16.6484L203.621 6.61724L211.1 16.6484L218.119 6.61724L225.1 16.6484L232.119 6.61724L239.1 16.6484L246.119 6.61724L253.1 16.6484L260.621 6.61724L268.1 16.6484L275.119 6.61724L282.1 16.6484L289.119 6.61724L296.1 16.6484L303.621 6.61724L311.1 16.6484L318.621 6.61724L326.1 16.6484L333.621 6.61724L341.1 16.6484L348.621 6.61724L356.1 16.6484L363.621 6.61724L371.1 16.6484L378.621 6.61724L386.1 16.6484L393.621 6.61724L401.1 16.6484L408.621 6.61724Z' fill='white'/%3E%3C/svg%3E") no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .header-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--dark-green);
+            margin-bottom: 12px;
+        }
+
+        .header-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--dark-green);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .receipt-body {
+            padding: 24px 20px;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+
+        .section-divider {
+            height: 3px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='376' height='3' viewBox='0 0 376 3' fill='none'%3E%3Cline x1='0.5' y1='1.5' x2='375.5' y2='2.5' stroke='%23E2E7F1' stroke-dasharray='8 8'/%3E%3C/svg%3E") no-repeat;
+            background-size: 100% 100%;
+            margin: 12px 0;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 0;
+            margin-bottom: 16px;
+        }
+
+        .data-label {
+            font-size: 14px;
+            color: #6B7280;
+            font-weight: 400;
+        }
+
+        .data-value {
+            font-size: 14px;
+            color: #111827;
+            font-weight: 500;
+            text-align: right;
+            word-break: break-all;
+        }
+
+        .disclaimer-box {
+            background: #F3F4F6;
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-size: 12px;
+            color: #6B7280;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .disclaimer-icon {
+            width: 16px;
+            height: 16px;
+            color: #4B5563;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .disclaimer-text {
+            line-height: 1.4;
+        }
+
+        .disclaimer-company {
+            color: var(--dark-green);
+            font-weight: 600;
+        }
+
+        .amount-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .amount-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .amount-value {
+            background: var(--primary-green);
+            color: var(--dark-green);
+            font-size: 18px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .receipt-footer {
+            padding: 20px;
+            text-align: center;
+            background: white;
+        }
+
+        .download-btn {
+            background: var(--dark-green);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .download-btn:hover {
+            background: #1a3a3b;
+            transform: translateY(-2px);
+        }
+
+        .receipt-footer::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='416' height='16' viewBox='0 0 416 16' fill='none'%3E%3Cpath d='M408.621 6.61724L416 16.5156V0.648438H0V16.6484L7.10254 6.61724L14.166 16.6484L20.7949 6.61724L27.3867 16.6484L34.4893 6.61724L41.5527 16.6484L48.1816 6.61724L54.7734 16.6484L61.876 6.61724L68.9395 16.6484L75.5684 6.61724L82.1602 16.6484L89.2627 6.61724L96.3262 16.6484L102.955 6.61724L109.547 16.6484L116.649 6.61724L123.713 16.6484L130.342 6.61724L136.935 16.6484L144.037 6.61724L151.1 16.6484L158.621 6.61724L166.1 16.6484L173.621 6.61724L181.1 16.6484L188.621 6.61724L196.1 16.6484L203.621 6.61724L211.1 16.6484L218.119 6.61724L225.1 16.6484L232.119 6.61724L239.1 16.6484L246.119 6.61724L253.1 16.6484L260.621 6.61724L268.1 16.6484L275.119 6.61724L282.1 16.6484L289.119 6.61724L296.1 16.6484L303.621 6.61724L311.1 16.6484L318.621 6.61724L326.1 16.6484L333.621 6.61724L341.1 16.6484L348.621 6.61724L356.1 16.6484L363.621 6.61724L371.1 16.6484L378.621 6.61724L386.1 16.6484L393.621 6.61724L401.1 16.6484L408.621 6.61724Z' fill='white'/%3E%3C/svg%3E") no-repeat;
+            background-size: 100% 100%;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .receipt-container {
+                max-width: 100%;
+            }
+            
+            .receipt-body {
+                padding: 20px 16px;
+            }
+            
+            .data-value {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="receipt-container">
+            <!-- Header -->
+            <div class="receipt-header">
+                <svg class="header-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                    <path d="M12,11H14V13H12V11M12,15H14V17H12V15M8,11H10V13H8V11M8,15H10V17H8V15Z" />
+                </svg>
+                <h1 class="header-title">Comprovante de<br>transferência.</h1>
+            </div>
+
+            <!-- Body -->
+            <div class="receipt-body">
+                <!-- Dados do Pagador -->
+                <div class="section-title">Dados do Pagador</div>
+                <div class="section-divider"></div>
+                <div class="data-grid">
+                    <div class="data-label">Nome</div>
+                    <div class="data-value">Kerlley Jose Vieira</div>
+                    <div class="data-label">CPF/CNPJ</div>
+                    <div class="data-value">***.401.436-**</div>
+                    <div class="data-label">Instituição</div>
+                    <div class="data-value">NU PAGAMENTOS S.A. - INSTITUIÇÃO DE PAGAMENTO</div>
+                    <div class="data-label">ID/Transação Pix</div>
+                    <div class="data-value">E18236120202509251934s15ca5a7e7f</div>
+                </div>
+
+                <!-- Dados do Recebedor -->
+                <div class="section-divider"></div>
+                <div class="section-title">Dados do recebedor</div>
+                <div class="section-divider"></div>
+                <div class="data-grid">
+                    <div class="data-label">Nome</div>
+                    <div class="data-value">MedPlataforma</div>
+                    <div class="data-label">CPF/CNPJ</div>
+                    <div class="data-value">47.600.169/0001-46</div>
+                    <div class="data-label">Instituição</div>
+                    <div class="data-value">AbacatePay Ltda.</div>
+                </div>
+
+                <!-- Descrição -->
+                <div class="section-divider"></div>
+                <div class="section-title">Descrição</div>
+                <div class="section-divider"></div>
+                <div class="data-grid">
+                    <div class="data-label">Forma de pagamento</div>
+                    <div class="data-value">PIX</div>
+                    <div class="data-label">Data de vencimento</div>
+                    <div class="data-value">25/09/2025 às 19:35:02</div>
+                    <div class="data-label">Data de pagamento</div>
+                    <div class="data-value">25/09/2025 às 19:35:02</div>
+                    <div class="data-label">ID/Transação Pix</div>
+                    <div class="data-value">E18236120202509251934s15ca5a7e7f</div>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="disclaimer-box">
+                    <svg class="disclaimer-icon" viewBox="0 0 16 17" fill="currentColor">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.5C4.41 1.5 1.5 4.41 1.5 8C1.5 11.59 4.41 14.5 8 14.5C11.59 14.5 14.5 11.59 14.5 8C14.5 4.41 11.59 1.5 8 1.5ZM8 6.5C8.28 6.5 8.5 6.72 8.5 7V9.5C8.5 9.78 8.28 10 8 10C7.72 10 7.5 9.78 7.5 9.5V7C7.5 6.72 7.72 6.5 8 6.5ZM8 11C8.28 11 8.5 11.22 8.5 11.5C8.5 11.78 8.28 12 8 12C7.72 12 7.5 11.78 7.5 11.5C7.5 11.22 7.72 11 8 11Z"/>
+                    </svg>
+                    <p class="disclaimer-text">
+                        Este documento e cobrança não possuem valor fiscal e são de responsabilidade única e exclusiva de <span class="disclaimer-company">AbacatePay Ltda.</span>
+                    </p>
+                </div>
+
+                <!-- Valor Pago -->
+                <div class="section-divider"></div>
+                <div class="amount-section">
+                    <div class="amount-label">VALOR PAGO</div>
+                    <div class="amount-value">R$ 227,00</div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="receipt-footer">
+                <button class="download-btn" @click="downloadPDF">
+                    Baixar PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            methods: {
+                downloadPDF() {
+                    // Funcionalidade para gerar e baixar PDF
+                    // Você pode integrar com uma biblioteca como jsPDF ou html2pdf
+                    console.log('Gerando PDF...');
+                    
+                    // Simulação de download
+                    const element = document.createElement('a');
+                    const file = new Blob(['Conteúdo do PDF seria gerado aqui'], {type: 'application/pdf'});
+                    element.href = URL.createObjectURL(file);
+                    element.download = 'comprovante-pagamento-abacatepay.pdf';
+                    document.body.appendChild(element);
+                    element.click();
+                    document.body.removeChild(element);
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.git
+.gitignore
+__pycache__
+node_modules
+logs
+reports
+temp
+.DS_Store
+*.log
+*.swp
+*.tmp
+.env

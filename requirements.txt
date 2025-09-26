@@ -1,0 +1,20 @@
+# PrescrevaMe Premium - Dependências Python
+# Instalar com: pip install -r requirements.txt
+
+# SDK AbacatePay
+abacatepay>=1.0.9
+
+# Framework web para webhooks
+Flask>=2.3.0
+
+# Utilitários
+requests>=2.32.0
+pydantic>=2.10.0
+
+# Para relatórios e exportação
+pandas>=2.0.0  # Opcional, para análise avançada
+openpyxl>=3.1.0  # Para exportar Excel
+
+# Desenvolvimento e testes
+pytest>=7.0.0  # Para testes
+python-dotenv>=1.0.0  # Para variáveis de ambiente
